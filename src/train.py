@@ -1,4 +1,4 @@
-from model_utils import update_model
+from model_utils import update_model, save_simple_metrics_report, get_model_performance_test_set
 from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
@@ -61,4 +61,12 @@ logging.info("Updating Model...")
 
 update_model(grid_search.best_estimator_)
 
-breakpoint()
+logging.info("Generating Model Report...")
+
+validation_score = grid_search.best_estimator_.score(x_test, y_test)
+save_simple_metrics_report(train_score, test_score, validation_score, grid_search.best_estimator_)
+
+y_test_pred = grid_search.best_estimator_.predict(x_test)
+get_model_performance_test_set(y_test, y_test_pred)
+
+logging.info("Training Finished...")
