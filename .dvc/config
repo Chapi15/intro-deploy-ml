@@ -1,0 +1,6 @@
+['remote "model-tracker"']
+    url = azure://ml-ops-platzi/model
+    account_name = saplatzidvc
+['remote "dataset-tracker"']
+    url = azure://ml-ops-platzi/dataset
+    account_name = saplatzidvc
